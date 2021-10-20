@@ -22,9 +22,9 @@ namespace API
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 //Getting context to apply pending migrations and then seed database
                 try{
-                    var context = services.GetRequiredService<ParticipantsDbContext>();
+                    var context = services.GetRequiredService<UammDbContext>();
                     await context.Database.MigrateAsync();
-                    await ParticipantsContextSeed.SeedDatabaseAsync(context, loggerFactory);
+                    await UammContextSeed.SeedDatabaseAsync(context, loggerFactory);
                 }catch(Exception ex){
                     var logger = loggerFactory.CreateLogger<Program>();
                     logger.LogError("Error Seeding Database");

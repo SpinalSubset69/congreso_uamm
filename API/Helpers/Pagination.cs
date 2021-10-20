@@ -7,7 +7,7 @@ namespace API.Helpers
 {
     public class Pagination<T> where T : class
     {
-        public Pagination(int pageIndex, int pageSize, decimal count, IReadOnlyList<T> data)
+        public Pagination(int pageSize, int pageIndex, decimal count, IReadOnlyList<T> data)
         {
             PageIndex = pageIndex;
             PageSize = pageSize;

@@ -1,31 +1,32 @@
 [
-    {
-        "Id": 1,
-        "Name": "Ingeniero en Sistemas Computacionales",
-        "NameAcronym": "ISC"
-    },
-    {
-        "Id": 2,
-        "Name": "Ingeniero Agrónomo",
-        "NameAcronym": "IA"
-    },
-    {
-        "Id": 3,
-        "Name": "Licenciado en Enfermería",
-        "NameAcronym": "LE"
-    },
-    {
-        "Id": 4,
-        "Name": "Contador Público",
-        "NameAcronym": "CP"
-    },
-    {
-        "Id": 5,
-        "Name": "Ingeniero Bioquímico Industrial",
-        "NameAcronym": "IBI"
-    },{
-        "Id": 6,
-        "Name": "Licenciado en Nutrición y Salud Integral",
-        "NameAcronym": "LNSI"
-    }
+  {
+    "Id": 1,
+    "Name": "Ingeniero en Sistemas Computacionales",
+    "NameAcronym": "ISC"
+  },
+  {
+    "Id": 2,
+    "Name": "Ingeniero Agrónomo",
+    "NameAcronym": "IA"
+  },
+  {
+    "Id": 3,
+    "Name": "Licenciado en Enfermería",
+    "NameAcronym": "LE"
+  },
+  {
+    "Id": 4,
+    "Name": "Contador Público",
+    "NameAcronym": "CP"
+  },
+  {
+    "Id": 5,
+    "Name": "Ingeniero Bioquímico Industrial",
+    "NameAcronym": "IBI"
+  },
+  {
+    "Id": 6,
+    "Name": "Licenciado en Nutrición y Salud Integral",
+    "NameAcronym": "LNSI"
+  }
 ]

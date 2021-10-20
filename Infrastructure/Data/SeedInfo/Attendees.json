@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Name": "Luis Esteban Garza García",
+    "StudentNumber" : "a2193520049",
+    "Email": "alastorlml@gmail.com",
+    "RegisterAt": "27/11/2021 10:50:12",
+    "CareerId": 1,
+    "ActivityId": 1 
+  },
+  {
+    "Id": 2,
+    "Name": "Jéssica Jiménez Leo",
+    "StudentNumber" : "a2193549349",
+    "Email": "jessy@gmail.com",
+    "RegisterAt": "27/11/2021 10:50:12",
+    "CareerId": 6,
+    "ActivityId": 4
+  },
+  {
+    "Id": 3,
+    "Name": "Rosa Elena Salazar",
+    "StudentNumber" : "a2197384049",
+    "Email": "rosa@gmail.com",
+    "RegisterAt": "27/11/2021 10:50:12",
+    "CareerId": 5,
+    "ActivityId": 3
+  },
+  {
+    "Id": 4,
+    "Name": "Cristo Badillo Sánchez",
+    "StudentNumber" : "a2193543149",
+    "Email": "cristo@gmail.com",
+    "RegisterAt": "27/11/2021 10:50:12",
+    "CareerId": 1,
+    "ActivityId": 2
+  }
+]
