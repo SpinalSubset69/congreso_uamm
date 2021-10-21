@@ -8,9 +8,10 @@ namespace Core.Interfaces
 {
     public interface IGenericRepository <T> where T : BaseEntity
     {                
-        Task<T> GetEntityWithSpecs();
+        Task<T> GetByIdAsync(ISpecification<T> spec);
         Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
         Task<int> CountAsync(ISpecification<T> spec);
         Task<int> SaveAsync(T entity);
+        Task<int> UpdateEntityAsync(T Entity);
     }
 }

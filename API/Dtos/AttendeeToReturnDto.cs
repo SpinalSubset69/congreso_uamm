@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace API.Dtos
 {
     public class AttendeeToReturnDto
@@ -8,6 +10,6 @@ namespace API.Dtos
         public string Email { get; set; }        
         public string RegisterAt {get; set;}
         public string Career {get; set;}
-        public string Activity {get; set;}
+        public List<ActivityWithNoAttendeesToReturnDto> Activities {get; set;}
     }
 }

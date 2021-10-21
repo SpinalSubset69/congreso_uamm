@@ -1,13 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Dtos
-{
+{  
     public class RegisterDto
     {
         [Required]
         public string Name { get; set; }
         [Required]
-        [RegularExpression(@"([a])\d+", ErrorMessage = "Insert a Valid Student Number")]
+        [RegularExpression(@"([a])\d+", ErrorMessage = "Insert a Valid Student Number")]       
         public string StudentNumber {get; set;}
         [Required]
         [EmailAddress]
@@ -15,8 +16,8 @@ namespace API.Dtos
         [Required]
         public string RegisterAt { get; set; }
         [Required]
-        public string CareerId { get; set; }
+        public string Career { get; set; }
         [Required]
-        public string ActivityId { get; set; }
+        public int? ActivityId { get; set; }
     }
 }

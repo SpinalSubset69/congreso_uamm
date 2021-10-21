@@ -4,44 +4,39 @@
     "Name": "Crud con patrones de diseño",
     "Place": "Forum",
     "Schedule": "07/september/2021",
-    "RapportuerId": 1,
-    "CareerId": 1,
-    "ActivityTypeId": 1    
+    "Career": "Sistemas",
+    "ActivityType": "Ponencia"
   },
   {
     "Id": 2,
     "Name": "Cuidados del Cuerpo",
     "Place": "Explanada",
-    "Schedule": "09/october/2021",
-    "RapportuerId": 2,
-    "CareerId": 6,
-    "ActivityTypeId": 2    
+    "Schedule": "09/october/2021",    
+    "Career": "Enfermería",
+    "ActivityType": "Taller"
   },
   {
     "Id": 3,
     "Name": "Cuidados en señores de 3ra Edad",
     "Place": "Biblioteca",
-    "Schedule": "09/december/2021",
-    "RapportuerId": 3,
-    "CareerId": 3,
-    "ActivityTypeId": 2   
+    "Schedule": "09/december/2021",    
+    "Career": "Enfermería",
+    "ActivityType": "Taller"
   },
   {
     "Id": 4,
     "Name": "Taller creacion apps móviles",
     "Place": "Taller cómputo",
-    "Schedule": "07/september/2021",
-    "RapportuerId": 4,
-    "CareerId": 1,
-    "ActivityTypeId": 3   
+    "Schedule": "07/september/2021",    
+    "Career": "Sistemas",
+    "ActivityType": "Taller"
   },
   {
     "Id": 5,
     "Name": "Ponencia Sistemas de Riego en Mante",
     "Place": "Forum",
-    "Schedule": "11/october/2021",
-    "RapportuerId": 5,
-    "CareerId": 2,
-    "ActivityTypeId": 1    
+    "Schedule": "11/october/2021",    
+    "Career": "Agrónomo",
+    "ActivityType": "Ponencia"
   }
 ]

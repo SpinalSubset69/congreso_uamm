@@ -6,19 +6,14 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Core.Entities
-{
+{    
     public class Attendee : BaseEntity
     {
         public string Name { get; set; }
         public string StudentNumber {get; set;}
         public string Email { get; set; }
         public string RegisterAt {get; set;}
-        public int CareerId {get; set;}
-        [Required]
-        public int ActivityId {get; set;}
-        [ForeignKey("CareerId")]
-        public Career Career {get; set;}             
-        [ForeignKey("ActivityId")]
-        public Activity Activity {get; set;}
+        public string Career {get; set;}             
+        public List<Activity> Activities {get; set;}
     }
 }

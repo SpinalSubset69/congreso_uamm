@@ -14,35 +14,17 @@ namespace Infrastructure.Data
         public static async Task SeedDatabaseAsync(UammDbContext _context, ILoggerFactory _logger)
         {
             try
-            {
-                if (!_context.Careers.Any())
-                {
-                    var careersData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedInfo/Careers.json");
-                    var careers = JsonSerializer.Deserialize<List<Career>>(careersData);
-                    foreach (var carerr in careers)
-                    {
-                        _context.Careers.Add(carerr);
-                    }
-                    await _context.SaveChangesAsync();
-                }
-                if (!_context.ActivityTypes.Any())
-                {
-                    var typesData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedInfo/ActivityType.json");
-                    var types = JsonSerializer.Deserialize<List<ActivityType>>(typesData);
-                    foreach (var type in types)
-                    {
-                        _context.ActivityTypes.Add(type);
-                    }
-                    await _context.SaveChangesAsync();
-                }
+            {               
                 if (!_context.Rapportuers.Any())
                 {
                     var rapportuersData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedInfo/Rapportuers.json");
                     var rapportuers = JsonSerializer.Deserialize<List<Rapportuer>>(rapportuersData);
                     foreach (var rapportuer in rapportuers)
-                    {
+                    {                        
                         _context.Rapportuers.Add(rapportuer);
                     }
+
+                    
                     await _context.SaveChangesAsync();
                 }                
                 if (!_context.Activities.Any())
@@ -50,7 +32,7 @@ namespace Infrastructure.Data
                     var activitiesData = await File.ReadAllTextAsync("../Infrastructure/Data/SeedInfo/Activities.json");
                     var activities = JsonSerializer.Deserialize<List<Activity>>(activitiesData);
                     foreach (var activity in activities)
-                    {
+                    {                       
                         _context.Activities.Add(activity);
                     }
                     await _context.SaveChangesAsync();
@@ -61,7 +43,7 @@ namespace Infrastructure.Data
                     var attendees = JsonSerializer.Deserialize<List<Attendee>>(attendeesData);
 
                     foreach (var attendee in attendees)
-                    {
+                    {                        
                         _context.Attendees.Add(attendee);
                     }
                     await _context.SaveChangesAsync();

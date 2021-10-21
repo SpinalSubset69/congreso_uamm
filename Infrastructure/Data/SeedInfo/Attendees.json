@@ -5,8 +5,7 @@
     "StudentNumber" : "a2193520049",
     "Email": "alastorlml@gmail.com",
     "RegisterAt": "27/11/2021 10:50:12",
-    "CareerId": 1,
-    "ActivityId": 1 
+    "Career": "Ingeniero en Sistemas Computacionales"
   },
   {
     "Id": 2,
@@ -14,8 +13,7 @@
     "StudentNumber" : "a2193549349",
     "Email": "jessy@gmail.com",
     "RegisterAt": "27/11/2021 10:50:12",
-    "CareerId": 6,
-    "ActivityId": 4
+    "Career": "Licenciado en Nutrición"
   },
   {
     "Id": 3,
@@ -23,8 +21,7 @@
     "StudentNumber" : "a2197384049",
     "Email": "rosa@gmail.com",
     "RegisterAt": "27/11/2021 10:50:12",
-    "CareerId": 5,
-    "ActivityId": 3
+    "Career": "Ingeniero Bioquímico"
   },
   {
     "Id": 4,
@@ -32,7 +29,6 @@
     "StudentNumber" : "a2193543149",
     "Email": "cristo@gmail.com",
     "RegisterAt": "27/11/2021 10:50:12",
-    "CareerId": 1,
-    "ActivityId": 2
+    "Career": "Ingeniero Agrónomo"
   }
 ]

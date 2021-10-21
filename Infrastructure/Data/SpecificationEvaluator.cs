@@ -9,7 +9,7 @@ namespace Infrastructure.Data
     {
         public static IQueryable<T> GetQueryable(IQueryable<T> inputQuery, ISpecification<T> spec){
             var query = inputQuery;
-
+            
             if(spec.Criteria != null){
                 query = query.Where(spec.Criteria);
             }

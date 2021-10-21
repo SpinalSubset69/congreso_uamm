@@ -4,42 +4,45 @@ namespace Core.Specification
 {
     public class ActivitySpecifications : BaseSpecification<Activity>
     {
+        public ActivitySpecifications(int? id) : base(x => x.Id == id)
+        {            
+            AddIncludes(x => x.Rapportuers);
+            AddIncludes(x => x.Attendees);            
+        }
         public ActivitySpecifications()
-        {
-             AddIncludes(x => x.Career);
-            AddIncludes(x => x.Rapportuer);
-            AddIncludes(x => x.Attendees);
-            AddIncludes(x => x.ActivityType);
+        {            
+            AddIncludes(x => x.Rapportuers);
+            AddIncludes(x => x.Attendees);            
         }
         public ActivitySpecifications(ActivitySpecParams activityParams)
-        :base(x => 
-        (string.IsNullOrEmpty(activityParams.Search) || x.Name.ToLower().Contains(activityParams.Search.ToLower()))        
+        : base(x =>
+         (string.IsNullOrEmpty(activityParams.Search) || x.Name.ToLower().Contains(activityParams.Search.ToLower()))
         )
-        {
-            AddIncludes(x => x.Career);
-            AddIncludes(x => x.Rapportuer);
-            AddIncludes(x => x.Attendees);
-            AddIncludes(x => x.ActivityType);
+        {    
+            AddIncludes(x => x.Rapportuers);
+            AddIncludes(x => x.Attendees);                           
             AddOrderBy(s => s.Schedule);
             ApplyPaging(activityParams.PageSize * (activityParams.PageIndex - 1), activityParams.PageSize);
 
-            if(!string.IsNullOrEmpty(activityParams.Sort)){
-                switch(activityParams.Sort){
+            if (!string.IsNullOrEmpty(activityParams.Sort))
+            {
+                switch (activityParams.Sort)
+                {
                     case "name":
-                    AddOrderBy(s => s.Name);
-                    break;
+                        AddOrderBy(s => s.Name);
+                        break;
                     case "career":
-                    AddOrderBy(s => s.Career);
-                    break;
+                        AddOrderBy(s => s.Career);
+                        break;
                     case "type":
-                    AddOrderBy(s => s.ActivityType);
-                    break;
+                        AddOrderBy(s => s.ActivityType);
+                        break;
                     case "ponente":
-                    AddOrderByDesc(s => s.Rapportuer);
-                    break;
+                        AddOrderByDesc(s => s.Rapportuers);
+                        break;
                     default:
-                    AddOrderByDesc(s => s.Schedule);
-                    break;
+                        AddOrderByDesc(s => s.Schedule);
+                        break;
                 }
             }
         }

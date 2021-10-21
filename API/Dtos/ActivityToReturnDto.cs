@@ -12,9 +12,9 @@ namespace API.Dtos
          public string Name { get; set; }
         public string Place { get; set; }
         public string Schedule { get; set; }
-        public string Rapportuer { get; set; }
+        public List<RapportuerToReturnDto> Rapportuers { get; set; }
         public string Career {get; set;}
         public string ActivityType {get; set;}
-        public IEnumerable<AttendeeToReturnDto> Attendees {get; set;}
+        public List<AtendeeWithNoActivitiesToReturnDto> Attendees {get; set;}
     }
 }

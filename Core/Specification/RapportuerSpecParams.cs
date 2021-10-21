@@ -1,6 +1,6 @@
 namespace Core.Specification
 {
-    public class ActivitySpecParams
+    public class RapportuerSpecParams
     {
         private const int MAX_PAGE = 50;
         public int PageIndex {get; set;} = 1;
@@ -9,10 +9,6 @@ namespace Core.Specification
         private string _search;
         public string Search {get => _search; set => _search = value.ToLower();}
         public string Sort {get; set;}  
-        public int? CareerId {get; set;}
-        public int? ActivityType {get; set;}
-        public int? RapportuerId {get; set;}
-        public int? Id {get; set;}
-
+        public int? id {get; set;}        
     }
 }

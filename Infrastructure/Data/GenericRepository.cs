@@ -22,9 +22,9 @@ namespace Infrastructure.Data
              return await ApplySpecification(spec).CountAsync();
         }
 
-        public Task<T> GetEntityWithSpecs()
+        public async Task<T> GetByIdAsync(ISpecification<T> spec)
         {
-            throw new NotImplementedException();
+            return await ApplySpecification(spec).FirstOrDefaultAsync<T>();
         }
 
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
@@ -36,6 +36,12 @@ namespace Infrastructure.Data
         {
              _context.Set<T>().Add(entity);
              return await _context.SaveChangesAsync();             
+        }
+
+        public async Task<int> UpdateEntityAsync(T Entity)
+        {
+             _context.Set<T>().Update(Entity);
+             return await _context.SaveChangesAsync();
         }
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)

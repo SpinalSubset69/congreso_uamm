@@ -9,7 +9,9 @@ namespace Core.Specification
         private string _search;
         public string Search {get => _search; set => _search = value.ToLower();}
         public string Sort {get; set;}  
-        public int? CareerId {get; set;}
+        public string Career {get; set;}
         public int? Activity {get; set;}    
+        public int? ActivityId {get; set;}
+        public string StudentNumber {get; set;}
     }
 }

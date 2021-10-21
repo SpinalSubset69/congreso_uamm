@@ -11,17 +11,10 @@ namespace Core.Entities
     {
         public string Name { get; set; }
         public string Place { get; set; }
-        public string Schedule { get; set; }
-        public int RapportuerId {get; set;}
-        public int CareerId {get; set;}
-        public int ActivityTypeId {get; set;}
-        //ForeignKeys
-        [ForeignKey("RapportuerId")]   
-        public Rapportuer Rapportuer { get; set; }
-        [ForeignKey("CareerId")]   
-        public Career Career { get; set; }
-        [ForeignKey("ActivityTypeId")]   
-        public ActivityType ActivityType { get; set; }        
-        public IEnumerable<Attendee> Attendees { get; set; }
+        public string Schedule { get; set; }      
+        public string Career {get; set;}
+        public string ActivityType {get; set;}
+        public List<Rapportuer> Rapportuers { get; set; }   
+        public List<Attendee> Attendees { get; set; }
     }
 }

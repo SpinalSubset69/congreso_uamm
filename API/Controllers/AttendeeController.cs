@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Dtos;
 using API.Errors;
@@ -15,9 +17,11 @@ namespace API.Controllers
     {
         private readonly IGenericRepository<Attendee> _attendeeRepo;
         private readonly IMapper _mapper;
+        private readonly IGenericRepository<Activity> _activityRepo;
 
-        public AttendeeController(IGenericRepository<Attendee> attendeeRepo, IMapper mapper)
+        public AttendeeController(IGenericRepository<Attendee> attendeeRepo, IGenericRepository<Activity> activityRepo, IMapper mapper)
         {
+            _activityRepo = activityRepo;
             _attendeeRepo = attendeeRepo;
             _mapper = mapper;
         }
@@ -28,17 +32,55 @@ namespace API.Controllers
             var countSpec = new AttendeeForCountSpecification(attendeeParams);
             var totalItems = await _attendeeRepo.CountAsync(countSpec);
             var attendees = await _attendeeRepo.ListAsync(spec);
-            var data = _mapper.Map<IReadOnlyList<Attendee>, IReadOnlyList<AttendeeToReturnDto>>(attendees);            
+            var data = _mapper.Map<IReadOnlyList<Attendee>, IReadOnlyList<AttendeeToReturnDto>>(attendees).ToList();
             return Ok(new Pagination<AttendeeToReturnDto>(attendeeParams.PageSize, attendeeParams.PageIndex, totalItems, data));
         }
+
+        [HttpGet("{studentNumber}")]
+        public async Task<ActionResult<ApiResponseOk>> GetStudendByNumber(string studentNumber){
+            var studentNumberFilterSpec = new AttendeeSpecification(studentNumber);
+            var student = await _attendeeRepo.GetByIdAsync(studentNumberFilterSpec);
+            var data = _mapper.Map<Attendee, AttendeeToReturnDto>(student);
+
+            return data != null ? Ok(new ApiResponseOk(200, "Ok", data))    
+                                : BadRequest(new ApiResponse(404, "Studen Not Found"));
+            
+        }
+
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>>RegisterAttendee([FromBody]RegisterDto attendeeParam){                
-                var attendeeToReturn = _mapper.Map<RegisterDto, Attendee>(attendeeParam);
-                var attendee = await _attendeeRepo.SaveAsync(attendeeToReturn);
-                if(attendee > 0)                {
-                    return Ok(new ApiResponse(200));
-                }                
-                return BadRequest(new ApiException(400));
+        public async Task<ActionResult<ApiResponse>> RegisterAttendee([FromBody] RegisterDto attendeeParam)
+        {
+            var newAttendee = _mapper.Map<RegisterDto, Attendee>(attendeeParam);
+            var studentNumberFilterSpec = new AttendeeSpecification(attendeeParam.StudentNumber);
+            var activityFilterSpec = new ActivitySpecifications(attendeeParam.ActivityId);
+
+            var activity = await _activityRepo.GetByIdAsync(activityFilterSpec);
+            var attendeeByStudentNumber = await _attendeeRepo.GetByIdAsync(studentNumberFilterSpec);
+
+            if (attendeeByStudentNumber == null)
+            {
+                newAttendee.Activities = new List<Activity>();
+                newAttendee.Activities.Add(activity);
+                var attendee = await _attendeeRepo.SaveAsync(newAttendee);
+                return attendee > 0 ? Ok(new ApiResponse(200, "Attendee Registered Succesfully"))
+                                        :  BadRequest(new ApiException(400)); 
+            }
+            else
+            {
+                attendeeByStudentNumber.Name = attendeeParam.Name;
+                attendeeByStudentNumber.Career =attendeeParam.Career;
+                attendeeByStudentNumber.Email = attendeeParam.Email;
+                attendeeByStudentNumber.RegisterAt = attendeeParam.RegisterAt;
+                attendeeByStudentNumber.StudentNumber = attendeeParam.StudentNumber;
+                if (!attendeeByStudentNumber.Activities.Contains(activity))
+                {
+                    attendeeByStudentNumber.Activities.Add(activity);
+                    var result = await _attendeeRepo.UpdateEntityAsync(attendeeByStudentNumber);
+                    return result > 0 ? Ok(new ApiResponse(200, "Attendee Registered Succesfully"))
+                                        :  BadRequest(new ApiException(400));
+                }
+                return Ok(new ApiResponse(200, "Already Registered on this Activity"));
+            }          
         }
     }
 }
