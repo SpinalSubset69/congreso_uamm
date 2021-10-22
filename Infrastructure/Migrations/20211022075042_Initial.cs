@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +15,9 @@ namespace Infrastructure.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Place = table.Column<string>(type: "TEXT", nullable: true),
-                    Schedule = table.Column<string>(type: "TEXT", nullable: true),
+                    Schedule = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Day = table.Column<string>(type: "TEXT", nullable: true),
+                    Hour = table.Column<string>(type: "TEXT", nullable: true),
                     Career = table.Column<string>(type: "TEXT", nullable: true),
                     ActivityType = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -32,7 +35,9 @@ namespace Infrastructure.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     StudentNumber = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
-                    RegisterAt = table.Column<string>(type: "TEXT", nullable: true),
+                    RegisterAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Day = table.Column<string>(type: "TEXT", nullable: true),
+                    Hour = table.Column<string>(type: "TEXT", nullable: true),
                     Career = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>

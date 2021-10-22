@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    public class RapportuerController : BaseApiController
+    public class PonenteController : BaseApiController
     {
         private readonly IGenericRepository<Rapportuer> __rappoRepo;
         private readonly IMapper __mapper;
-        public RapportuerController(IGenericRepository<Rapportuer> _rappoRepo, IMapper _mapper)
+        public PonenteController(IGenericRepository<Rapportuer> _rappoRepo, IMapper _mapper)
         {
             __mapper = _mapper;
             __rappoRepo = _rappoRepo;

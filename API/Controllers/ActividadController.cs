@@ -14,18 +14,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class ActivityController : BaseApiController
+    public class ActividadController : BaseApiController
     {
 
         private readonly IMapper _mapper;
+        private ActivityHelpers _helpers;
         private readonly IGenericRepository<Activity> _activityRepo;
         private readonly IGenericRepository<Rapportuer> _rapportuerRepo;
 
-        public ActivityController(IGenericRepository<Activity> activityRepo, IGenericRepository<Rapportuer> rapportuerRepo, IMapper mapper)
+        public ActividadController(IGenericRepository<Activity> activityRepo,
+                                   IGenericRepository<Rapportuer> rapportuerRepo,
+                                   IMapper mapper)
         {
             _rapportuerRepo = rapportuerRepo;
             _activityRepo = activityRepo;
-            _mapper = mapper;
+            _mapper = mapper;          
         }
         [HttpGet]
         public async Task<ActionResult<Pagination<ActivityToReturnDto>>> GetActivities([FromQuery] ActivitySpecParams activityParams)
@@ -51,8 +54,9 @@ namespace API.Controllers
         [HttpPost("agregarPonente")]
         public async Task<ActionResult<ApiResponseOk>> AddRapportuerToActivity([FromBody] RegisterRepportuerDto register)
         {
+            _helpers = new ActivityHelpers();
             var spec = new ActivitySpecifications(register.ActivityId);
-            var activity = await _activityRepo.GetByIdAsync(spec);
+            var activity = await _activityRepo.GetByIdAsync(spec);            
 
             if (activity != null)
             {
@@ -62,21 +66,9 @@ namespace API.Controllers
                 var rapportuerSpec = new RapportuerSpecifications(rapportuer.Name);
                 var dbRapportuer = await _rapportuerRepo.GetByIdAsync(rapportuerSpec);
 
-                //En caso de que exista en la base de datos verificamos si existe en la coleccion de ponentes de la actividad
-                bool existsinActivity = false;
-                if (dbRapportuer != null)
-                {
-                    foreach (var item in activity.Rapportuers)
-                    {
-                        if (item.Name == dbRapportuer.Name)
-                        {
-                            existsinActivity = true;
-                        }
-                    }
-                }
-
+                //En caso de que exista en la base de datos verificamos si existe en la coleccion de ponentes de la actividad                
                 //Verificamos que el ponento no exista en la actividad, en caso de ser así se agrega a la actividad
-                if (!existsinActivity)
+                if (!_helpers.RepportuerExistsOnActivity(activity.Rapportuers, dbRapportuer))
                 {
                     activity.Rapportuers.Add(rapportuer);
                     var result = await _activityRepo.UpdateEntityAsync(activity);

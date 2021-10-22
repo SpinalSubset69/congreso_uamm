@@ -3,15 +3,23 @@
     "Id": 1,
     "Name": "Crud con patrones de diseño",
     "Place": "Forum",
-    "Schedule": "07/september/2021",
     "Career": "Sistemas",
-    "ActivityType": "Ponencia"
+    "ActivityType": "Ponencia",
+    "Rapportuers": [
+      {
+        "Id" : 7,
+        "Name": "Arely Pineda Hernandez",
+        "Email": "aly@gmail.com",
+        "Phone" : "8311239876",
+        "Biography": "Hola soy Arely"
+      }
+    ]
   },
   {
     "Id": 2,
     "Name": "Cuidados del Cuerpo",
     "Place": "Explanada",
-    "Schedule": "09/october/2021",    
+
     "Career": "Enfermería",
     "ActivityType": "Taller"
   },
@@ -19,15 +27,22 @@
     "Id": 3,
     "Name": "Cuidados en señores de 3ra Edad",
     "Place": "Biblioteca",
-    "Schedule": "09/december/2021",    
     "Career": "Enfermería",
-    "ActivityType": "Taller"
+    "ActivityType": "Taller",
+    "Rapportuers": [
+      {
+        "Id" : 8,
+        "Name": "Alexia Pineda Hernandez",
+        "Email": "alexiay@gmail.com",
+        "Phone" : "8311239887",
+        "Biography": "Hola soy Alexia"
+      }
+    ]
   },
   {
     "Id": 4,
     "Name": "Taller creacion apps móviles",
     "Place": "Taller cómputo",
-    "Schedule": "07/september/2021",    
     "Career": "Sistemas",
     "ActivityType": "Taller"
   },
@@ -35,7 +50,6 @@
     "Id": 5,
     "Name": "Ponencia Sistemas de Riego en Mante",
     "Place": "Forum",
-    "Schedule": "11/october/2021",    
     "Career": "Agrónomo",
     "ActivityType": "Ponencia"
   }

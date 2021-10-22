@@ -43,13 +43,19 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Career")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Day")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Hour")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Place")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Schedule")
+                    b.Property<DateTime>("Schedule")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -66,13 +72,19 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Career")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Day")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Hour")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("RegisterAt")
+                    b.Property<DateTime>("RegisterAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StudentNumber")

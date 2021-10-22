@@ -6,12 +6,12 @@ namespace Core.Specification
         public int PageIndex {get; set;} = 1;
         private int _pageSize = 5;
         public int PageSize{ get => _pageSize; set => _pageSize = (value > MAX_PAGE) ? MAX_PAGE : value;}
-        private string _search;
-        public string Search {get => _search; set => _search = value.ToLower();}
-        public string Sort {get; set;}  
-        public int? CareerId {get; set;}
-        public int? ActivityType {get; set;}
-        public int? RapportuerId {get; set;}
+        private string _carrera;
+        public string Carrera {get => _carrera; set => _carrera = value.ToLower();}
+        public string Ordenar {get; set;}          
+        public string Tipo {get; set;}        
+        public string Dia  {get; set;}
+        public string Hora {get; set;}
         public int? Id {get; set;}
 
     }

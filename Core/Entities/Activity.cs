@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 namespace Core.Entities
 {
     public class Activity : BaseEntity
-    {
+    {        
         public string Name { get; set; }
         public string Place { get; set; }
-        public string Schedule { get; set; }      
+        public DateTime Schedule { get; set; }   
+        public string Day {get; set;}   
+        public string Hour {get; set;}
         public string Career {get; set;}
         public string ActivityType {get; set;}
         public List<Rapportuer> Rapportuers { get; set; }   

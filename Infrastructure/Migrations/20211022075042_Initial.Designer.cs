@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(UammDbContext))]
-    [Migration("20211021203103_initial")]
-    partial class initial
+    [Migration("20211022075042_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,13 +45,19 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Career")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Day")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Hour")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Place")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Schedule")
+                    b.Property<DateTime>("Schedule")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -68,13 +74,19 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Career")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Day")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Hour")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("RegisterAt")
+                    b.Property<DateTime>("RegisterAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StudentNumber")
