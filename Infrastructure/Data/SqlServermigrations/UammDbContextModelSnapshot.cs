@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Data.SqlServermigrations
 {
     [DbContext(typeof(UammDbContext))]
     partial class UammDbContextModelSnapshot : ModelSnapshot

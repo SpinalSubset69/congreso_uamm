@@ -25,7 +25,6 @@ namespace Infrastructure.Data
                         _context.Rapportuers.Add(rapportuer);
                     }
 
-
                     await _context.SaveChangesAsync();
                 }
                 if (!_context.Activities.Any())

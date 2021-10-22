@@ -1,53 +1,29 @@
 [
-  {
-    "Id": 1,
+  {   
     "Name": "Crud con patrones de diseño",
     "Place": "Forum",
     "Career": "Sistemas",
-    "ActivityType": "Ponencia",
-    "Rapportuers": [
-      {
-        "Id" : 7,
-        "Name": "Arely Pineda Hernandez",
-        "Email": "aly@gmail.com",
-        "Phone" : "8311239876",
-        "Biography": "Hola soy Arely"
-      }
-    ]
+    "ActivityType": "Ponencia"    
   },
-  {
-    "Id": 2,
+  {  
     "Name": "Cuidados del Cuerpo",
     "Place": "Explanada",
-
     "Career": "Enfermería",
     "ActivityType": "Taller"
   },
-  {
-    "Id": 3,
+  {    
     "Name": "Cuidados en señores de 3ra Edad",
     "Place": "Biblioteca",
     "Career": "Enfermería",
-    "ActivityType": "Taller",
-    "Rapportuers": [
-      {
-        "Id" : 8,
-        "Name": "Alexia Pineda Hernandez",
-        "Email": "alexiay@gmail.com",
-        "Phone" : "8311239887",
-        "Biography": "Hola soy Alexia"
-      }
-    ]
+    "ActivityType": "Taller"
   },
-  {
-    "Id": 4,
+  {  
     "Name": "Taller creacion apps móviles",
     "Place": "Taller cómputo",
     "Career": "Sistemas",
     "ActivityType": "Taller"
   },
-  {
-    "Id": 5,
+  {    
     "Name": "Ponencia Sistemas de Riego en Mante",
     "Place": "Forum",
     "Career": "Agrónomo",

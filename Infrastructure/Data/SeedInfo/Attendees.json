@@ -1,27 +1,23 @@
 [
-  {
-    "Id": 1,
+  {    
     "Name": "Luis Esteban Garza García",
     "StudentNumber" : "a2193520049",
     "Email": "alastorlml@gmail.com",
     "Career": "Ingeniero en Sistemas Computacionales"
   },
-  {
-    "Id": 2,
+  {    
     "Name": "Jéssica Jiménez Leo",
     "StudentNumber" : "a2193549349",
     "Email": "jessy@gmail.com",
     "Career": "Licenciado en Nutrición"
   },
-  {
-    "Id": 3,
+  {    
     "Name": "Rosa Elena Salazar",
     "StudentNumber" : "a2197384049",
     "Email": "rosa@gmail.com",
     "Career": "Ingeniero Bioquímico"
   },
-  {
-    "Id": 4,
+  {    
     "Name": "Cristo Badillo Sánchez",
     "StudentNumber" : "a2193543149",
     "Email": "cristo@gmail.com",

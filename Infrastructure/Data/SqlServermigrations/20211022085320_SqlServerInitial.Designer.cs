@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Data.SqlServermigrations
 {
     [DbContext(typeof(UammDbContext))]
-    [Migration("20211022075042_Initial")]
-    partial class Initial
+    [Migration("20211022085320_SqlServerInitial")]
+    partial class SqlServerInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
