@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
 using API.Middleware;
+using Core.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using API.Mails;
 
 namespace API
 {
@@ -49,6 +51,8 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.Configure<EmailToData>(Configuration.GetSection("EmailToSetting"));
             services.AddApplicationServices();
             //Add DbContext
             services.AddControllers();
@@ -74,6 +78,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 

@@ -18,7 +18,7 @@ namespace API.Helpers
             
             CreateMap<Activity, ActivityWithNoAttendeesToReturnDto>();
             
-
+            CreateMap<EmailUserData, EmailUserDataDto>().ReverseMap();
             CreateMap<Attendee, AttendeeToReturnDto>()            
             .ForMember(x => x.Activities, o => o.MapFrom(s => s.Activities));
 
