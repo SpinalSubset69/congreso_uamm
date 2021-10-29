@@ -1,0 +1,59 @@
+[
+  {    
+    "Name": "Luis Esteban Garza García",
+    "StudentNumber" : "a2193520049",
+    "Email": "alastorlml@gmail.com",
+    "Phone" : "8311636429",
+    "RegisterAt" : "29-10-2021",
+    "Day" : "29",
+    "Hour" : "10",
+    "Career": "Ingeniero en Sistemas Computacionales",
+    "IsRegister" : true,
+    "Activities" : [
+      {
+        "Name" : "Sistemas"
+      },
+      {
+        "Name" : "Enfermería"
+      }
+    ]
+  },
+  {    
+    "Name": "Jessica Jimenez Leo",
+    "StudentNumber" : "a2193520048",
+    "Email": "jessyhot@gmail.com",
+    "Phone" : "8311636469",
+    "RegisterAt" : "29-10-2021",
+    "Day" : "29",
+    "Hour" : "10",
+    "Career": "Ingeniero Nutricion",
+    "IsRegister" : true,
+    "Activities" : [
+      {
+        "Name" : "Sistemas"
+      },
+      {
+        "Name" : "Enfermería"
+      }
+    ]
+  },
+  {    
+    "Name": "Cristo Badillo Sánchez",
+    "StudentNumber" : "a2193520049",
+    "Email": "alastorlml@gmail.com",
+    "Phone" : "8311636429",
+    "RegisterAt" : "29-10-2021",
+    "Day" : "29",
+    "Hour" : "10",
+    "Career": "Ingeniero en Sistemas Computacionales",
+    "IsRegister" : true,
+    "Activities" : [
+      {
+        "Name" : "Sistemas"
+      },
+      {
+        "Name" : "Enfermería"
+      }
+    ]
+  } 
+]

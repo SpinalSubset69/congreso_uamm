@@ -14,16 +14,6 @@ namespace Infrastructure.Data
         {
             
         }
-        public DbSet<Attendee> Attendees {get; set;}        
-        public DbSet<Rapportuer> Rapportuers { get; set; }
-        public DbSet<Activity> Activities { get; set; }        
-        protected override void OnModelCreating(ModelBuilder modelBuilder){
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder){
-            base.OnConfiguring(optionsBuilder);
-        }
+        public DbSet<Student> Students {get; set;}          
     }
 }

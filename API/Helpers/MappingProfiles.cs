@@ -12,22 +12,14 @@ namespace API.Helpers
     {
         public MappingProfiles()
         {
-            CreateMap<Activity, ActivityToReturnDto>()
-            .ForMember(x => x.Rapportuers, o => o.MapFrom(s => s.Rapportuers))                        
-            .ForMember(x => x.Attendees, o => o.MapFrom(s => s.Attendees)); 
-            
-            CreateMap<Activity, ActivityWithNoAttendeesToReturnDto>();
-            
             CreateMap<EmailUserData, EmailUserDataDto>().ReverseMap();
-            CreateMap<Attendee, AttendeeToReturnDto>()            
-            .ForMember(x => x.Activities, o => o.MapFrom(s => s.Activities));
 
-            CreateMap<Attendee, AtendeeWithNoActivitiesToReturnDto>();             
-            
-            CreateMap<Attendee, RegisterDto>().ReverseMap();
-            CreateMap<Rapportuer, RegisterRepportuerDto>().ReverseMap();
+            CreateMap<Student, StudentToReturnDto>()
+            .ForMember(x => x.Activities, o => o.MapFrom(s => s.Activities))
+            .ReverseMap();
 
-            CreateMap<Rapportuer, RapportuerToReturnDto>();
+
+            CreateMap<Student, StudentRegisterDto>().ReverseMap();
         }
     }
 }

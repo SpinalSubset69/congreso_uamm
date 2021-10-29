@@ -15,80 +15,86 @@ namespace API.Controllers
 {
     public class EstudianteController : BaseApiController
     {
-        private readonly IGenericRepository<Attendee> _attendeeRepo;
+        private readonly IGenericRepository<Student> _attendeeRepo;
         private readonly IMapper _mapper;
-        private readonly IGenericRepository<Activity> _activityRepo;
 
-        public EstudianteController(IGenericRepository<Attendee> attendeeRepo, IGenericRepository<Activity> activityRepo, IMapper mapper)
+        public EstudianteController(IGenericRepository<Student> attendeeRepo, IMapper mapper)
         {
-            _activityRepo = activityRepo;
             _attendeeRepo = attendeeRepo;
             _mapper = mapper;
         }
 
 
         [HttpGet]
-        public async Task<ActionResult<Pagination<AttendeeToReturnDto>>> GetAttendees([FromQuery] AttendeeSpecParams attendeeParams)
+        public async Task<ActionResult<Pagination<StudentToReturnDto>>> GetAttendees([FromQuery] StudentSpecParams attendeeParams)
         {
-            var spec = new AttendeeSpecification(attendeeParams);
-            var countSpec = new AttendeeForCountSpecification(attendeeParams);
+            var spec = new StudentSpecification(attendeeParams);
+            var countSpec = new StudentForCountSpecification(attendeeParams);
             var totalItems = await _attendeeRepo.CountAsync(countSpec);
             var attendees = await _attendeeRepo.ListAsync(spec);
-            var data = _mapper.Map<IReadOnlyList<Attendee>, IReadOnlyList<AttendeeToReturnDto>>(attendees).ToList();                                   
-            return Ok(new Pagination<AttendeeToReturnDto>(attendeeParams.PageSize, attendeeParams.PageIndex, totalItems, data));
+            var data = _mapper.Map<IReadOnlyList<Student>, IReadOnlyList<StudentToReturnDto>>(attendees).ToList();
+            return Ok(new Pagination<StudentToReturnDto>(attendeeParams.PageSize, attendeeParams.PageIndex, totalItems, data));
         }
 
         [HttpGet("{studentNumber}")]
-        public async Task<ActionResult<ApiResponseOk>> GetStudendByNumber(string studentNumber){
-            var studentNumberFilterSpec = new AttendeeSpecification(studentNumber);
+        public async Task<ActionResult<ApiResponseOk>> GetStudendByNumber(string studentNumber)
+        {
+            var studentNumberFilterSpec = new StudentSpecification(studentNumber);
             var student = await _attendeeRepo.GetByIdAsync(studentNumberFilterSpec);
-            var data = _mapper.Map<Attendee, AttendeeToReturnDto>(student);
+            var data = _mapper.Map<Student, StudentToReturnDto>(student);
 
-            return data != null ? Ok(new ApiResponseOk(200, "Ok", data))    
+            return data != null ? Ok(new ApiResponseOk(200, "Ok", data))
                                 : BadRequest(new ApiResponse(404, "Studen Not Found"));
-            
+
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse>> RegisterAttendee([FromBody] RegisterDto attendeeParam)
+        public async Task<ActionResult<ApiResponse>> RegisterAttendee([FromBody] StudentRegisterDto studentParam)
         {
-            char spaceSplit = ' ';
-            var newAttendee = _mapper.Map<RegisterDto, Attendee>(attendeeParam);
-            var studentNumberFilterSpec = new AttendeeSpecification(attendeeParam.StudentNumber);
-            var activityFilterSpec = new ActivitySpecifications(attendeeParam.ActivityId);
-
-            var activity = await _activityRepo.GetByIdAsync(activityFilterSpec);
-            var dbAttendee = await _attendeeRepo.GetByIdAsync(studentNumberFilterSpec);
-
-            if (dbAttendee == null)
+            var studentFromParamsSpec = new StudentSpecification(studentParam.StudentNumber);
+            var studentFromDb = await _attendeeRepo.GetByIdAsync(studentFromParamsSpec);
+            int response = 0;
+            //Si el estudianto no se encuentra en la base de datos se crea uno nuevo
+            if (studentFromDb == null)
             {
-                newAttendee.Activities = new List<Activity>();
-                newAttendee.Activities.Add(activity);
-                newAttendee.RegisterAt = DateTime.Now;
-                newAttendee.Day = newAttendee.RegisterAt.ToString().Split("/")[0];
-                newAttendee.Hour = newAttendee.RegisterAt.ToString().Split(spaceSplit)[1];
-                var attendee = await _attendeeRepo.SaveAsync(newAttendee);
-                return attendee > 0 ? Ok(new ApiResponse(200, "Attendee Registered Succesfully"))
-                                        :  BadRequest(new ApiException(400)); 
-            }
-            else
-            {                
-                dbAttendee.Name = attendeeParam.Name;
-                dbAttendee.Career =attendeeParam.Career;
-                dbAttendee.Email = attendeeParam.Email;
-                dbAttendee.RegisterAt = DateTime.Now;
-                dbAttendee.Day = dbAttendee.RegisterAt.ToString().Split("/")[0];
-                dbAttendee.Hour = dbAttendee.RegisterAt.ToString().Split(spaceSplit)[1];
-                dbAttendee.StudentNumber = attendeeParam.StudentNumber;
-                if (!dbAttendee.Activities.Contains(activity))
+                var newStudent = _mapper.Map<StudentRegisterDto, Student>(studentParam);
+                newStudent.Activities = new List<Activity>();   
+                newStudent.Activities.Add(new Activity
                 {
-                    dbAttendee.Activities.Add(activity);
-                    var result = await _attendeeRepo.UpdateEntityAsync(dbAttendee);
-                    return result > 0 ? Ok(new ApiResponse(200, "Attendee Registered Succesfully"))
-                                        :  BadRequest(new ApiException(400));
+                    Name = studentParam.Activity
+                });
+
+                response = await _attendeeRepo.SaveAsync(newStudent);
+
+                return response > 0 ? new ApiResponse(200, "Estudiante Registrado con Éxito")
+                                  : new ApiResponse(500, "Ocurrió un error");
+            }
+            
+            //En caso de sí estar registrado agregamos la actividad a su lista de actividades ya registradas
+            //Verificamos que no este registrado ya en esta actividad
+            bool isAlreadyRegister = false;
+            foreach (var activity in studentFromDb.Activities)
+            {
+                if (activity.Name.Equals(studentParam.Activity))
+                {
+                    isAlreadyRegister = true;
                 }
-                return Ok(new ApiResponse(200, "Already Registered on this Activity"));
-            }          
+            }
+
+            if (!isAlreadyRegister)
+            {
+                studentFromDb.Activities.Add(new Activity
+                {
+                    Name = studentParam.Activity
+                });
+
+                response = await _attendeeRepo.UpdateEntityAsync(studentFromDb);
+
+                return response > 0 ? new ApiResponse(200, "Estudiante Registrado con Éxito")
+                                    : new ApiResponse(500, "Ocurrió un error");
+            }
+
+            return new ApiResponse(400, "Estudiante Ya se encuentra registrado");
         }
     }
 }

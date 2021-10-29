@@ -42,7 +42,7 @@ namespace API
         {
             services.AddDbContext<UammDbContext>(options =>
                        {
-                           options.UseSqlServer(Configuration.GetConnectionString("prodConnection"));
+                           options.UseMySql(Configuration.GetConnectionString("prodConnection"), new MySqlServerVersion(new Version(8, 0, 11)));
                        });
             ConfigureServices(services);
         }

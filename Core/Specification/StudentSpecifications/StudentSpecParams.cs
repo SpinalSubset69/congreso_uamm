@@ -1,6 +1,6 @@
 namespace Core.Specification
 {
-    public class AttendeeSpecParams
+    public class StudentSpecParams
     {
         private const int MAX_PAGE = 50;
         public int PageIndex {get; set;} = 1;
