@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions
 {
@@ -39,6 +42,10 @@ namespace API.Extensions
                     };
                     return new BadRequestObjectResult(errorResponse);
                 };
+            });
+
+            services.Configure<ForwardedHeadersOptions>(options => {
+                options.KnownProxies.Add(IPAddress.Parse("192.168.0.14"));
             });
             
             return services;
